@@ -234,7 +234,6 @@ describe("Sorting Practice", () => {
     ]);
   });
   test("Sort catArt by price", () => {
-    console.log(catArtSortByPriceA(catArt))
     expect(catArtSortByPriceA(catArt)).toStrictEqual([
       { designedBy: "Mittens", itemName: "Chewed Plastic Bag", price: 1.1 },
       { designedBy: "Patches", itemName: "Tangled yarn", price: 2.02 },
