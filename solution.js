@@ -63,11 +63,20 @@ const catArtSortByPriceA = (arr) => {
 // or try to implement merge sort
 // or look up another common sort algorithm (i.e. quicksort, ) and try your own implementation
 // Bonus add another argument that would allow the function to be used for ascending or descending order
-const mySortFunction = (arr) => {
+const mySortFunction = (arr, order = "ascending") => {
+  if (order == "ascending") {
+    return bubbleSort(arr, (a, b) => a > b);
+  } else {
+    return bubbleSort(arr, (a, b) => a < b);
+  }
+};
+
+const bubbleSort = (arr, callback) => {
   let sorted = true;
   for (let i = 0; i < arr.length; i++) {
     for (let j = 0; j < arr.length - 1 - i; j++) {
-      if (arr[j] > arr[j + 1]) {
+      // if (arr[j] > arr[j + 1]) {
+      if (callback(arr[j], arr[j + 1])) {
         [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
         sorted = false;
       }
@@ -77,30 +86,17 @@ const mySortFunction = (arr) => {
   return arr;
 };
 
-const bubbleSort = (arr, order) => {
-  let sorted = true;
-  for (let i = 0; i < arr.length; i++) {
-    for (let j = 0; j < arr.length - 1 - i; j++) {
-      if (arr[j] > arr[j + 1]) {
-        [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
-        sorted = false;
-      }
-    }
-    if (sorted) break;
-  }
-  return arr;
-};
-
-module.exports = {
-  sortNumsA,
-  sortNumsD,
-  sortWordsA,
-  sortWordsD,
-  sortProductNamesA,
-  sortProductPriceA,
-  sortProductPriceD,
-  sortProducsPriceNameA,
-  catArtSortDesginedByA,
-  catArtSortByPriceA,
-  mySortFunction,
-};
+const callBack = (a, b) =>
+  (module.exports = {
+    sortNumsA,
+    sortNumsD,
+    sortWordsA,
+    sortWordsD,
+    sortProductNamesA,
+    sortProductPriceA,
+    sortProductPriceD,
+    sortProducsPriceNameA,
+    catArtSortDesginedByA,
+    catArtSortByPriceA,
+    mySortFunction,
+  });
