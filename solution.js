@@ -75,7 +75,6 @@ const bubbleSort = (arr, callback) => {
   let sorted = true;
   for (let i = 0; i < arr.length; i++) {
     for (let j = 0; j < arr.length - 1 - i; j++) {
-      // if (arr[j] > arr[j + 1]) {
       if (callback(arr[j], arr[j + 1])) {
         [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
         sorted = false;
@@ -86,17 +85,16 @@ const bubbleSort = (arr, callback) => {
   return arr;
 };
 
-const callBack = (a, b) =>
-  (module.exports = {
-    sortNumsA,
-    sortNumsD,
-    sortWordsA,
-    sortWordsD,
-    sortProductNamesA,
-    sortProductPriceA,
-    sortProductPriceD,
-    sortProducsPriceNameA,
-    catArtSortDesginedByA,
-    catArtSortByPriceA,
-    mySortFunction,
-  });
+module.exports = {
+  sortNumsA,
+  sortNumsD,
+  sortWordsA,
+  sortWordsD,
+  sortProductNamesA,
+  sortProductPriceA,
+  sortProductPriceD,
+  sortProducsPriceNameA,
+  catArtSortDesginedByA,
+  catArtSortByPriceA,
+  mySortFunction,
+};
