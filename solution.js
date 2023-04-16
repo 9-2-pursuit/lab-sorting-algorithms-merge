@@ -76,7 +76,22 @@ const sortProductPriceD = (products) => {
 };
 
 // sort products by price, then by name, ascending order
-const sortProducsPriceNameA = () => {};
+const sortProducsPriceNameA = (products) => {
+  products.sort((a, b) => {
+    if (a.price - b.price > 0) {
+      return 1;
+    } else if (a.price - b.price < 0) {
+      return -1;
+    } else if (a.name < b.name) {
+      return -1;
+    } else if (a.name > b.name) {
+      return 1;
+    } else {
+      return 0;
+    }
+  });
+  return products;
+};
 
 // sort catArt by designed by
 const catArtSortDesginedByA = () => {};
