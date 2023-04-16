@@ -1,34 +1,119 @@
 const { catArt, someNums, someProducts, someWords } = require("./data/data.js");
 
 // sort numbers in ascending order
-const sortNumsA = () => {};
+const sortNumsA = (nums) => {
+  nums.sort((a, b) => a - b);
+  return nums;
+};
 
 // sort numbers in descending order
-const sortNumsD = () => {};
+const sortNumsD = (nums) => {
+  nums.sort((a, b) => b - a);
+  return nums;
+};
 
 // sort words in ascending order case sensitive
-const sortWordsA = () => {};
+const sortWordsA = (words) => {
+  words.sort((a, b) => {
+    if (a < b) {
+      return -1;
+    } else if (a > b) {
+      return 1;
+    } else {
+      return 0;
+    }
+  });
+  return words;
+};
 
 // sort words in descending order case insensitive
-const sortWordsD = () => {};
+const sortWordsD = (words) => {
+  words.sort((a, b) => {
+    a = a.toLowerCase();
+    b = b.toLowerCase();
+    if (a < b) {
+      return 1;
+    } else if (a > b) {
+      return -1;
+    } else {
+      return 0;
+    }
+  });
+  return words;
+};
 
 // sort products by name, ascending order case insensitive
-const sortProductNamesA = () => {};
+const sortProductNamesA = (products) => {
+  products.sort((a, b) => {
+    a.name = a.name.toLowerCase();
+    b.name = b.name.toLowerCase();
+
+    if (a.name < b.name) {
+      return -1;
+    } else if (a.name > b.name) {
+      return 1;
+    } else {
+      return 0;
+    }
+  });
+  return products;
+};
 
 // sort products by price, ascending order
-const sortProductPriceA = () => {};
+const sortProductPriceA = (products) => {
+  products.sort((a, b) => {
+    return a.price - b.price;
+  });
+  return products;
+};
 
 // sort products by price, descending order
-const sortProductPriceD = () => {};
+const sortProductPriceD = (products) => {
+  products.sort((a, b) => {
+    return b.price - a.price;
+  });
+  return products;
+};
 
 // sort products by price, then by name, ascending order
-const sortProducsPriceNameA = () => {};
+const sortProducsPriceNameA = (products) => {
+  products.sort((a, b) => {
+    if (a.price - b.price > 0) {
+      return 1;
+    } else if (a.price - b.price < 0) {
+      return -1;
+    } else if (a.name < b.name) {
+      return -1;
+    } else if (a.name > b.name) {
+      return 1;
+    } else {
+      return 0;
+    }
+  });
+  return products;
+};
 
 // sort catArt by designed by
-const catArtSortDesginedByA = () => {};
+const catArtSortDesginedByA = (art) => {
+  art.sort((a, b) => {
+    if (a.designedBy < b.designedBy) {
+      return -1;
+    } else if (a.designedBy > b.designedBy) {
+      return 1;
+    } else {
+      return 0;
+    }
+  });
+  return art;
+};
 
 // sort catArt by price
-const catArtSortByPriceA = () => {};
+const catArtSortByPriceA = (art) => {
+  art.sort((a, b) => {
+    return +a.price - +b.price;
+  });
+  return art;
+};
 
 // Create your own sort function
 // it should sort in ascending order
