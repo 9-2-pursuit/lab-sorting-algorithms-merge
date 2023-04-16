@@ -108,7 +108,12 @@ const catArtSortDesginedByA = (art) => {
 };
 
 // sort catArt by price
-const catArtSortByPriceA = () => {};
+const catArtSortByPriceA = (art) => {
+  art.sort((a, b) => {
+    return +a.price - +b.price;
+  });
+  return art;
+};
 
 // Create your own sort function
 // it should sort in ascending order
