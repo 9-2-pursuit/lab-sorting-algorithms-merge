@@ -94,7 +94,18 @@ const sortProducsPriceNameA = (products) => {
 };
 
 // sort catArt by designed by
-const catArtSortDesginedByA = () => {};
+const catArtSortDesginedByA = (art) => {
+  art.sort((a, b) => {
+    if (a.designedBy < b.designedBy) {
+      return -1;
+    } else if (a.designedBy > b.designedBy) {
+      return 1;
+    } else {
+      return 0;
+    }
+  });
+  return art;
+};
 
 // sort catArt by price
 const catArtSortByPriceA = () => {};
