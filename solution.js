@@ -2,61 +2,16 @@ const { catArt, someNums, someProducts, someWords } = require("./data/data.js");
 
 // sort numbers in ascending order
 const sortNumsA = (array) => {
-  if (array.length <= 1) {
-    return array;
-  }
-
-  const midpoint = Math.floor(array.length / 2);
-  let firstHalfArr = array.slice(0, midpoint);
-  let secondHalfArr = array.slice(midpoint);
-
-  let sortedFirstHalfArr = sortNumsA(firstHalfArr);
-  let sortedSecondHalfArr = sortNumsA(secondHalfArr);
-
-  let sortedArray = [];
-
-  while (sortedFirstHalfArr.length && sortedSecondHalfArr.length) {
-    let minValue =
-      sortedFirstHalfArr[0] < sortedSecondHalfArr[0]
-        ? sortedFirstHalfArr.shift()
-        : sortedSecondHalfArr.shift();
-
-    sortedArray.push(minValue);
-  }
-
-  sortedArray = [...sortedArray, ...sortedFirstHalfArr, ...sortedSecondHalfArr];
-
-  return sortedArray;
+  return mergeSort(array, (a, b) => {
+    return a < b ? -1 : 1;
+  });
 };
 
 // sort numbers in descending order
 const sortNumsD = (array) => {
-  if (array.length <= 1) {
-    return array;
-  }
-
-  const midpoint = Math.floor(array.length / 2);
-  let firstHalfArr = array.slice(0, midpoint);
-  let secondHalfArr = array.slice(midpoint);
-
-  let sortedFirstHalfArr = sortNumsA(firstHalfArr);
-  let sortedSecondHalfArr = sortNumsA(secondHalfArr);
-
-  let sortedArray = [];
-
-  while (sortedFirstHalfArr.length && sortedSecondHalfArr.length) {
-    let maxValue =
-      sortedFirstHalfArr[sortedFirstHalfArr.length - 1] >
-      sortedSecondHalfArr[sortedSecondHalfArr.length - 1]
-        ? sortedFirstHalfArr.pop()
-        : sortedSecondHalfArr.pop();
-
-    sortedArray.push(maxValue);
-  }
-
-  sortedArray = [...sortedArray, ...sortedFirstHalfArr, ...sortedSecondHalfArr];
-
-  return sortedArray;
+  return mergeSort(array, (a, b) => {
+    return a < b ? 1 : -1;
+  });
 };
 
 // sort words in ascending order case sensitive
@@ -129,14 +84,44 @@ const catArtSortByPriceA = (array) => {
 // Bonus add another argument that would allow the function to be used for ascending or descending order
 const mySortFunction = (array, direction = "asc") => {
   if (direction === "asc") {
-    return array.sort((a, b) => {
+    return mergeSort(array, (a, b) => {
       return a < b ? -1 : 1;
     });
   } else if (direction === "desc") {
-    return a > b ? -1 : 1;
+    return mergeSort(array, (a, b) => {
+      return a > b ? -1 : 1;
+    });
   } else {
     return array;
   }
+};
+
+const mergeSort = (array, callbackFn) => {
+  if (array.length <= 1) {
+    return array;
+  }
+
+  const midpoint = Math.floor(array.length / 2);
+  let firstHalfArr = array.slice(0, midpoint);
+  let secondHalfArr = array.slice(midpoint);
+
+  let sortedFirstHalfArr = mergeSort(firstHalfArr, callbackFn);
+  let sortedSecondHalfArr = mergeSort(secondHalfArr, callbackFn);
+
+  let sortedArray = [];
+
+  while (sortedFirstHalfArr.length && sortedSecondHalfArr.length) {
+    let minValue =
+      callbackFn(sortedFirstHalfArr[0], sortedSecondHalfArr[0]) === -1
+        ? sortedFirstHalfArr.shift()
+        : sortedSecondHalfArr.shift();
+
+    sortedArray.push(minValue);
+  }
+
+  sortedArray = [...sortedArray, ...sortedFirstHalfArr, ...sortedSecondHalfArr];
+
+  return sortedArray;
 };
 
 module.exports = {
